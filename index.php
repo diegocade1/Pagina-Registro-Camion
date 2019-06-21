@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?PHP
+//hostname_localhost="localhost";
+$hostname_localhost="localhost:3308";
+$database_localhost="controlcamion";
+$username_localhost="root";
+//$password_localhost="";
+$password_localhost="57706897";
+
+$conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_localhost,$database_localhost);
+
+	
+?>
 	<title>Consulta de Registro</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,9 +32,10 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
 </head>
 <body>
-	<h1>Prueba</h1>
+	
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
@@ -30,144 +43,52 @@
 
 						<div class="row header">
 							<div class="cell">
-								Full Name
+								Patente
 							</div>
 							<div class="cell">
-								Age
+								fecha
 							</div>
 							<div class="cell">
-								Job Title
+								Sello
 							</div>
 							<div class="cell">
-								Location
+								URL
+							</div>
+							<div class="cell">
+								Imagen
 							</div>
 						</div>
+						
+<?php
+				$result = mysqli_query($conexion,"SELECT patente, fecha, sello,url FROM tbcontrolcamion");
+				while ($row = mysqli_fetch_array($result)) 
+				{
+					echo "<div class=\"row\">\n".
+						"<div class=\"cell\" data-title=\"Patente\">\n".
+						$row['patente'].
+						"</div>\n" .
+						"<div class=\"cell\" data-title=\"Fecha\">\n".
+						$row['fecha'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"Sello\">\n".
+						$row['sello'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"URL\">\n".
+						$row['url'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"Imagen\">\n".
+						"<a href=".$row['url'].">".
+						"<img src=".$row['url']." alt=".$row['sello']." style=\"width:200px;height:240px;\" >".
+						"</a>".
+						"</div>\n".
+						"</div>\n";
+				}
 
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Vincent Williamson
-							</div>
-							<div class="cell" data-title="Age">
-								31
-							</div>
-							<div class="cell" data-title="Job Title">
-								iOS Developer
-							</div>
-							<div class="cell" data-title="Location">
-								Washington
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Joseph Smith
-							</div>
-							<div class="cell" data-title="Age">
-								27
-							</div>
-							<div class="cell" data-title="Job Title">
-								Project Manager
-							</div>
-							<div class="cell" data-title="Location">
-								Somerville, MA
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Justin Black
-							</div>
-							<div class="cell" data-title="Age">
-								26
-							</div>
-							<div class="cell" data-title="Job Title">
-								Front-End Developer
-							</div>
-							<div class="cell" data-title="Location">
-								Los Angeles
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Sean Guzman
-							</div>
-							<div class="cell" data-title="Age">
-								25
-							</div>
-							<div class="cell" data-title="Job Title">
-								Web Designer
-							</div>
-							<div class="cell" data-title="Location">
-								San Francisco
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Keith Carter
-							</div>
-							<div class="cell" data-title="Age">
-								20
-							</div>
-							<div class="cell" data-title="Job Title">
-								Graphic Designer
-							</div>
-							<div class="cell" data-title="Location">
-								New York, NY
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Austin Medina
-							</div>
-							<div class="cell" data-title="Age">
-								32
-							</div>
-							<div class="cell" data-title="Job Title">
-								Photographer
-							</div>
-							<div class="cell" data-title="Location">
-								New York
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Vincent Williamson
-							</div>
-							<div class="cell" data-title="Age">
-								31
-							</div>
-							<div class="cell" data-title="Job Title">
-								iOS Developer
-							</div>
-							<div class="cell" data-title="Location">
-								Washington
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								Joseph Smith
-							</div>
-							<div class="cell" data-title="Age">
-								27
-							</div>
-							<div class="cell" data-title="Job Title">
-								Project Manager
-							</div>
-							<div class="cell" data-title="Location">
-								Somerville, MA
-							</div>
-						</div>
-
-					</div>
+?>
 			</div>
 		</div>
 	</div>
-
+</div>
 
 	
 
