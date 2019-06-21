@@ -11,10 +11,21 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 	$sello = $_POST["sello"];
 	$fecha = $_POST["fecha"];
 	$imagen = $_POST["imagen"];
-	//$path = dirname($_SERVER['PHP_SELF'],2)."/imagenes/$sello.jpg";
+
 	$path = "imagenes/$sello.jpg";
-	$url = "http://$hostname_localhost/PaginaRegistroCamion/$path";
-	//$url = "imagenes/".$sello.".jpg";
+	$host = "";
+	
+	if(strpos($hostname_localhost,":"))
+	{
+		$host =  substr($hostname_localhost,0,strpos($hostname_localhost,":"));
+	}
+	else
+	{
+		$host = $hostname_localhost;
+	}
+	
+	$url = "http://$host/PaginaRegistroCamion/$path";
+	
 	$path = dirname(__DIR__)."/imagenes/";
 	
 	if (!is_dir($path)) 
