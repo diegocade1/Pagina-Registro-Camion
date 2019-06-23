@@ -10,7 +10,7 @@ $username_localhost="root";
 $password_localhost="57706897";
 
 $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_localhost,$database_localhost);
-
+$sello = $_GET["sello"];
 	
 ?>
 	<title>Consulta de Registro</title>
@@ -43,16 +43,7 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 
 						<div class="row header">
 							<div class="cell">
-								Patente
-							</div>
-							<div class="cell">
-								fecha
-							</div>
-							<div class="cell">
-								Sello
-							</div>
-							<div class="cell">
-								URL
+								PO
 							</div>
 							<div class="cell">
 								Imagen
@@ -60,27 +51,16 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 						</div>
 						
 <?php
-				$result = mysqli_query($conexion,"SELECT patente, fecha, sello,url FROM tbcontrolcamion");
+				$result = mysqli_query($conexion,"SELECT po, url FROM tbdetallecontrolcamion where sello_id='$sello'");
 				while ($row = mysqli_fetch_array($result)) 
 				{
-					echo "<div class=\"row\">\n".					    
-						"<div class=\"cell\" data-title=\"Patente\">\n".
-						"<a href="."detalle.php?sello=".$row['sello'].">".
-						$row['patente'].
-						"</a>".
+					echo "<div class=\"row\">\n".
+						"<div class=\"cell\" data-title=\"PO\">\n".
+						$row['po'].
 						"</div>\n" .
-						"<div class=\"cell\" data-title=\"Fecha\">\n".
-						$row['fecha'].
-						"</div>\n".
-						"<div class=\"cell\" data-title=\"Sello\">\n".
-						$row['sello'].
-						"</div>\n".
-						"<div class=\"cell\" data-title=\"URL\">\n".
-						$row['url'].
-						"</div>\n".
 						"<div class=\"cell\" data-title=\"Imagen\">\n".
 						"<a href=".$row['url'].">".
-						"<img src=".$row['url']." alt=".$row['sello']." style=\"width:120px;height:100px;\" >".
+						"<img src=".$row['url']." alt=".$row['po']." style=\"width:120px;height:100px;\" >".
 						"</a>".
 						"</div>\n".
 						"</div>\n";

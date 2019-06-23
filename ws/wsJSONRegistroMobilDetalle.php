@@ -32,7 +32,7 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 		mkdir($path);
 	}
 	
-	$path = dirname(__DIR__)."/imagenes/PO/$sello_$po.jpg";
+	$path = dirname(__DIR__)."/imagenes/PO/$sello"."_"."$po.jpg";
 	
 	file_put_contents($path,base64_decode($imagen));
 	$bytesArchivo=file_get_contents($path);
