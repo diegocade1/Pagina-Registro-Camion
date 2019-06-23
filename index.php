@@ -52,9 +52,6 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 								Sello
 							</div>
 							<div class="cell">
-								URL
-							</div>
-							<div class="cell">
 								Imagen
 							</div>
 						</div>
@@ -74,9 +71,6 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 						"</div>\n".
 						"<div class=\"cell\" data-title=\"Sello\">\n".
 						$row['sello'].
-						"</div>\n".
-						"<div class=\"cell\" data-title=\"URL\">\n".
-						$row['url'].
 						"</div>\n".
 						"<div class=\"cell\" data-title=\"Imagen\">\n".
 						"<a href=".$row['url'].">".

@@ -11,7 +11,7 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 	$sello = $_POST["sello"];
 	$imagen = $_POST["imagen"];
 
-	$path = "imagenes/$sello.jpg";
+	$path = "imagenes/$sello"."_"."$po.";
 	$host = "";
 	
 	if(strpos($hostname_localhost,":"))
