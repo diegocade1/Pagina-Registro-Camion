@@ -3,8 +3,8 @@
 $hostname_localhost="localhost:3308";
 $database_localhost="controlcamion";
 $username_localhost="root";
-//$password_localhost="";
-$password_localhost="57706897";
+$password_localhost="";
+//$password_localhost="57706897";
 
 $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_localhost,$database_localhost);
 	$po = $_POST["po"];
@@ -23,7 +23,7 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 		$host = $hostname_localhost;
 	}
 	
-	$url = "http://$host/PaginaRegistroCamion/$path";
+	$url = $path //"http://$host/PaginaRegistroCamion/$path";
 	
 	$path = dirname(__DIR__)."/imagenes/PO";
 	
