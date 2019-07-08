@@ -11,7 +11,7 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 	$sello = $_POST["sello"];
 	$imagen = $_POST["imagen"];
 
-	$path = "/imagenes/PO/$sello"."_"."$po.jpg";
+	$path = "imagenes/PO/$sello"."_"."$po.jpg";
 	$host = "";
 	
 	if(strpos($hostname_localhost,":"))
@@ -23,8 +23,8 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 		$host = $hostname_localhost;
 	}
 	
-	$url = $path //"http://$host/PaginaRegistroCamion/$path";
-	
+	//$url = "http://$host/PaginaRegistroCamion/$path";
+	$url = str_replace(" ","%20",$path);
 	$path = dirname(__DIR__)."/imagenes/PO";
 	
 	if (!is_dir($path)) 

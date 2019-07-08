@@ -13,7 +13,7 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 
 	
 ?>
-	<title>Consulta de Registro</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -36,58 +36,38 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 </head>
 <body>
 	
+ <form action="index.php" method="POST">
+
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
-					<div class="table">
-
-						<div class="row header">
+				<div class="table">
+					<div class="row">
 							<div class="cell">
-								Patente
+								<label for="txtUsuario"><b>Usuario</b></label>
 							</div>
 							<div class="cell">
-								fecha
+								<input type="text" placeholder="Enter Username" name="txtUsuario" required>
+							</div>					
+					</div>
+					<div class="row">
+							<div class="cell">
+								<label for="txtContrasena"><b>Contraseña</b></label>
 							</div>
 							<div class="cell">
-								Sello
-							</div>
+								<input type="password" placeholder="Enter Password" name="txtContrasena" required>
+							</div>							
+					</div>
+					<div class="row">
 							<div class="cell">
-								Imagen
-							</div>
-						</div>
-						
-<?php
-				$result = mysqli_query($conexion,"SELECT patente, fecha, sello,imagen,url FROM tbcontrolcamion");
-				while ($row = mysqli_fetch_array($result)) 
-				{
-					echo "<div class=\"row\">\n".					    
-						"<div class=\"cell\" data-title=\"Patente\">\n".
-						"<a href="."detalle.php?sello=".$row['sello'].">".
-						$row['patente'].
-						"</a>".
-						"</div>\n" .
-						"<div class=\"cell\" data-title=\"Fecha\">\n".
-						$row['fecha'].
-						"</div>\n".
-						"<div class=\"cell\" data-title=\"Sello\">\n".
-						$row['sello'].
-						"</div>\n".
-						"<div class=\"cell\" data-title=\"Imagen\">\n".
-						"<a href=".$row['url'].">".						
-						"<img src="."data:image/jpeg;base64,". base64_encode( $row['imagen'] )." style=\"width:120px;height:100px;\" />".
-						"</a>".
-						"</div>\n".
-						"</div>\n";
-				}
-
-?>
-			</div>
+								<button type="submit">Iniciar Sesion</button>
+							</div>					
+					</div>
 		</div>
 	</div>
-</div>
+  </div>
 
-	
-
+</form> 
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -97,6 +77,5 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
 </body>
 </html>

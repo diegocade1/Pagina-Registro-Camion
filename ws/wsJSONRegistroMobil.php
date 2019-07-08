@@ -24,7 +24,8 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 		$host = $hostname_localhost;
 	}
 	
-	$url = "http://$host/PaginaRegistroCamion/$path";
+	//$url = "http://$host/PaginaRegistroCamion/$path";
+	$url = str_replace(" ","%20",$path);
 	
 	$path = dirname(__DIR__)."/imagenes/";
 	

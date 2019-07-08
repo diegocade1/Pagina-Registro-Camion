@@ -51,7 +51,7 @@ $sello = $_GET["sello"];
 						</div>
 						
 <?php
-				$result = mysqli_query($conexion,"SELECT po, url FROM tbdetallecontrolcamion where sello_id='$sello'");
+				$result = mysqli_query($conexion,"SELECT po, url,imagen FROM tbdetallecontrolcamion where sello_id='$sello'");
 				while ($row = mysqli_fetch_array($result)) 
 				{
 					echo "<div class=\"row\">\n".
@@ -60,7 +60,7 @@ $sello = $_GET["sello"];
 						"</div>\n" .
 						"<div class=\"cell\" data-title=\"Imagen\">\n".
 						"<a href=".$row['url'].">".
-						"<img src=".$row['url']." alt=".$row['po']." style=\"width:120px;height:100px;\" >".
+						"<img src="."data:image/jpeg;base64,". base64_encode( $row['imagen'] )." style=\"width:120px;height:100px;\" />".
 						"</a>".
 						"</div>\n".
 						"</div>\n";
