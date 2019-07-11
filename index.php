@@ -2,14 +2,9 @@
 <html lang="en">
 <head>
 <?PHP
-//hostname_localhost="localhost";
-$hostname_localhost="localhost:3308";
-$database_localhost="controlcamion";
-$username_localhost="root";
-//$password_localhost="";
-$password_localhost="57706897";
-
-$conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_localhost,$database_localhost);
+	include dirname(__DIR__).'/PaginaRegistroCamion/db_connnection.php';
+	
+	$conexion=OpenCon();
 
 	
 ?>
@@ -43,41 +38,81 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 
 						<div class="row header">
 							<div class="cell">
+								ID
+							</div>
+							<div class="cell">
+								Cliente ID
+							</div>
+							<div class="cell">
+								Terminal ID
+							</div>
+							<div class="cell">
+								Anden ID
+							</div>
+							<div class="cell">
 								Patente
 							</div>
 							<div class="cell">
-								fecha
+								Chofer
 							</div>
 							<div class="cell">
-								Sello
+								Hora de LLegada Camion
 							</div>
 							<div class="cell">
-								Imagen
+								Hora de Ingreso Terminal
+							</div>
+							<div class="cell">
+								Hora de Apertura Camion
+							</div>
+							<div class="cell">
+								Fecha Creacion
 							</div>
 						</div>
 						
 <?php
-				$result = mysqli_query($conexion,"SELECT patente, fecha, sello,imagen,url FROM tbcontrolcamion");
+				$result = mysqli_query($conexion,"SELECT ID,Cliente_id,Terminal_id,Anden_id,Patente,Chofer,Hora_llegada_camion,Hora_ingreso_terminal,Hora_apertura_camion,fecha_creacion FROM tbcontrolcamion;");
 				while ($row = mysqli_fetch_array($result)) 
 				{
 					echo "<div class=\"row\">\n".					    
-						"<div class=\"cell\" data-title=\"Patente\">\n".
-						"<a href="."detalle.php?sello=".$row['sello'].">".
-						$row['patente'].
+						"<div class=\"cell\" data-title=\"ID\">\n".
+						"<a href="."detalle.php?sello=".$row['ID'].">".
+						$row['ID'].
 						"</a>".
 						"</div>\n" .
-						"<div class=\"cell\" data-title=\"Fecha\">\n".
-						$row['fecha'].
+						"<div class=\"cell\" data-title=\"ClienteID\">\n".
+						$row['Cliente_id'].
 						"</div>\n".
-						"<div class=\"cell\" data-title=\"Sello\">\n".
-						$row['sello'].
+						"<div class=\"cell\" data-title=\"TerminalID\">\n".
+						$row['Terminal_id'].
 						"</div>\n".
-						"<div class=\"cell\" data-title=\"Imagen\">\n".
-						"<a href=".$row['url'].">".						
-						"<img src="."data:image/jpeg;base64,". base64_encode( $row['imagen'] )." style=\"width:120px;height:100px;\" />".
-						"</a>".
+						"<div class=\"cell\" data-title=\"AndenID\">\n".
+						$row['Anden_id'].
 						"</div>\n".
+						"<div class=\"cell\" data-title=\"Patente\">\n".
+						$row['Patente'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"Chofer\">\n".
+						$row['Chofer'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"HoraLlegadaCamion\">\n".
+						$row['Hora_llegada_camion'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"HoraIngresoTerminal\">\n".
+						$row['Hora_ingreso_terminal'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"HoraAperturaCamion\">\n".
+						$row['Hora_apertura_camion'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"FechaCreacion\">\n".
+						$row['fecha_creacion'].
 						"</div>\n";
+						
+						//"<div class=\"cell\" data-title=\"Imagen\">\n".
+						//"<a href=".$row['url'].">".						
+						//"<img src="."data:image/jpeg;base64,". base64_encode( $row['imagen'] )." style=\"width:120px;height:100px;\" />".
+						//"</a>".
+						//"</div>\n".
+						//"</div>\n";
 				}
 
 ?>
