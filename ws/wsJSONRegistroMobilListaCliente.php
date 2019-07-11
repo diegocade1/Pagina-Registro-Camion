@@ -1,14 +1,9 @@
 <?PHP
-//hostname_localhost="localhost";
-$hostname_localhost="localhost:3308";
-$database_localhost="controlcamion";
-$username_localhost="root";
-//$password_localhost="";
-$password_localhost="57706897";
+	include dirname(__DIR__).'/db_connnection.php';
 
 	$json=array();
 	
-	$conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_localhost,$database_localhost);
+	$conexion=OpenCon();
 	
 	$consulta = "select * from tbcliente";
 	$resultado = mysqli_query($conexion,$consulta);
@@ -18,7 +13,7 @@ $password_localhost="57706897";
 		$json['cliente'][]=$registro;
 	}
 	
-	mysqli_close($conexion);
+	CloseCon($conexion);
 	
 	echo json_encode($json);
 	
