@@ -2,18 +2,13 @@
 <html lang="en">
 <head>
 <?PHP
-//hostname_localhost="localhost";
-$hostname_localhost="localhost:3308";
-$database_localhost="controlcamion";
-$username_localhost="root";
-//$password_localhost="";
-$password_localhost="57706897";
-
-$conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_localhost,$database_localhost);
+	include dirname(__DIR__).'/PaginaRegistroCamion/db_connnection.php';
+	
+	$conexion=OpenCon();
 
 	
 ?>
-	<title>Login</title>
+	<title>Consulta de Registro</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -36,38 +31,98 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 </head>
 <body>
 	
- <form action="index.php" method="POST">
-
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
-				<div class="table">
-					<div class="row">
+					<div class="table">
+
+						<div class="row header">
 							<div class="cell">
-								<label for="txtUsuario"><b>Usuario</b></label>
+								ID
 							</div>
 							<div class="cell">
-								<input type="text" placeholder="Enter Username" name="txtUsuario" required>
-							</div>					
-					</div>
-					<div class="row">
-							<div class="cell">
-								<label for="txtContrasena"><b>Contraseña</b></label>
+								Cliente ID
 							</div>
 							<div class="cell">
-								<input type="password" placeholder="Enter Password" name="txtContrasena" required>
-							</div>							
-					</div>
-					<div class="row">
+								Terminal ID
+							</div>
 							<div class="cell">
-								<button type="submit">Iniciar Sesion</button>
-							</div>					
-					</div>
+								Anden ID
+							</div>
+							<div class="cell">
+								Patente
+							</div>
+							<div class="cell">
+								Chofer
+							</div>
+							<div class="cell">
+								Hora de LLegada Camion
+							</div>
+							<div class="cell">
+								Hora de Ingreso Terminal
+							</div>
+							<div class="cell">
+								Hora de Apertura Camion
+							</div>
+							<div class="cell">
+								Fecha Creacion
+							</div>
+						</div>
+						
+<?php
+				$result = mysqli_query($conexion,"SELECT ID,Cliente_id,Terminal_id,Anden_id,Patente,Chofer,Hora_llegada_camion,Hora_ingreso_terminal,Hora_apertura_camion,fecha_creacion FROM tbcontrolcamion;");
+				while ($row = mysqli_fetch_array($result)) 
+				{
+					echo "<div class=\"row\">\n".					    
+						"<div class=\"cell\" data-title=\"ID\">\n".
+						"<a href="."detalle.php?sello=".$row['ID'].">".
+						$row['ID'].
+						"</a>".
+						"</div>\n" .
+						"<div class=\"cell\" data-title=\"ClienteID\">\n".
+						$row['Cliente_id'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"TerminalID\">\n".
+						$row['Terminal_id'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"AndenID\">\n".
+						$row['Anden_id'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"Patente\">\n".
+						$row['Patente'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"Chofer\">\n".
+						$row['Chofer'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"HoraLlegadaCamion\">\n".
+						$row['Hora_llegada_camion'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"HoraIngresoTerminal\">\n".
+						$row['Hora_ingreso_terminal'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"HoraAperturaCamion\">\n".
+						$row['Hora_apertura_camion'].
+						"</div>\n".
+						"<div class=\"cell\" data-title=\"FechaCreacion\">\n".
+						$row['fecha_creacion'].
+						"</div>\n";
+						
+						//"<div class=\"cell\" data-title=\"Imagen\">\n".
+						//"<a href=".$row['url'].">".						
+						//"<img src="."data:image/jpeg;base64,". base64_encode( $row['imagen'] )." style=\"width:120px;height:100px;\" />".
+						//"</a>".
+						//"</div>\n".
+						//"</div>\n";
+				}
+
+?>
+			</div>
 		</div>
 	</div>
-  </div>
+</div>
 
-</form> 
+	
+
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -77,5 +132,6 @@ $conexion=mysqli_connect($hostname_localhost,$username_localhost,$password_local
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
 </body>
 </html>
