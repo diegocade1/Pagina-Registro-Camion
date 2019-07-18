@@ -1,5 +1,5 @@
 <?php
-	include dirname(__DIR__).'/PaginaRegistroCamion/db_connnection.php';
+	include dirname(__DIR__).'/PaginaRegistroCamion/config/db_connnection.php';
 	
 	$conexion=OpenCon();
 ?>
@@ -20,18 +20,20 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <!-- JQuery Script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="fixed-nav sticky-footer bg-light" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.php">Inicio</a>
+    <a class="navbar-brand" href="lista_registros.php">Inicio</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Lista Registros">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="lista_registros.php">
             <i class="fa fa-fw fa-list"></i>
             <span class="nav-link-text">Lista Registros</span>
           </a>
@@ -43,10 +45,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMultiUsuario">
             <li>
-              <a href="#">Registro de Usuarios</a>
+              <a href="crear_usuario.php">Registro de Usuarios</a>
             </li>
             <li>
-              <a href="#">Lista de Usuarios</a>
+              <a href="lista_usuarios.php">Lista de Usuarios</a>
             </li>
           </ul>
         </li>
@@ -57,10 +59,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMultiClientes">
             <li>
-              <a href="#">Registro de Clientes</a>
+              <a href="crear_cliente.php">Registro de Clientes</a>
             </li>
             <li>
-              <a href="#">Lista de Clientes</a>
+              <a href="lista_clientes.php">Lista de Clientes</a>
             </li>
           </ul>
         </li>
@@ -71,10 +73,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMultiTerminales">
             <li>
-              <a href="#">Registro de Terminales</a>
+              <a href="crear_terminal.php">Registro de Terminales</a>
             </li>
             <li>
-              <a href="#">Lista de Terminales</a>
+              <a href="lista_terminales.php">Lista de Terminales</a>
             </li>
           </ul>
         </li>
@@ -85,10 +87,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMultiAndenes">
             <li>
-              <a href="#">Registro de Andenes</a>
+              <a href="crear_anden.php">Registro de Andenes</a>
             </li>
             <li>
-              <a href="#">Lista de Andenes</a>
+              <a href="lista_andenes.php">Lista de Andenes</a>
             </li>
           </ul>
         </li>

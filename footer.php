@@ -22,7 +22,7 @@
           <div class="modal-body">Selecciona "Logout" si estas listo para cerrar tu sesión actual.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="ws/wsJSONRegistroMobilLogout.php">Logout</a>
+            <a class="btn btn-primary" href="clases/usuario/logout.php">Logout</a>
           </div>
         </div>
       </div>

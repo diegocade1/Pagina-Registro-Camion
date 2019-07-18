@@ -1,5 +1,5 @@
 <?PHP
-	include dirname(__DIR__).'/db_connnection.php';
+	include dirname(__DIR__).'/config/db_connnection.php';
 
 	$json=array();
 	

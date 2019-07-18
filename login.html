@@ -21,14 +21,14 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form action="ws/wsJSONRegistroMobilAutenticacionUsuario.php" method="POST">
+        <form action="clases/usuario/autenticacion.php" method="POST">
           <div class="form-group">
             <label for="exampleInputEmail1">ID Usuario</label>
-            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Ingrese Usuario">
+            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" placeholder="Ingrese Usuario" maxlength="20">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
-            <input class="form-control" id="txtContrasenia" name="txtContrasenia" type="password" placeholder="Contraseña">
+            <input class="form-control" id="txtContrasenia" name="txtContrasenia" type="password" placeholder="Contraseña" maxlength="20">
           </div>
           <div class="form-group">
             <div class="form-check">
