@@ -11,7 +11,7 @@
 
 	$sql="INSERT INTO tbdetallecontrolcamion (`Controlcamion_id`, `Guia_aerea`, `Hora_inicio_descarga`, `Hora_termino_descarga`, `Usuario_id_responsable`) VALUES (?,?,?,?,?)";
 	$stm=$conexion->prepare($sql);
-	$stm->bind_param('isssi',$id_registro,$guia_aerea,$hora_inicio_descarga,$hora_termino_descarga,$id_usuario);	
+	$stm->bind_param('issss',$id_registro,$guia_aerea,$hora_inicio_descarga,$hora_termino_descarga,$id_usuario);	
 		
 	if($stm->execute()){
 		echo "registra";

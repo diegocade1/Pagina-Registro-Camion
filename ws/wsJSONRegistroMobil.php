@@ -61,7 +61,7 @@
 	
 	$sql="INSERT INTO tbcontrolcamion (`Cliente_id`, `Terminal_id`, `Anden_id`, `Patente`, `Chofer`, `Hora_llegada_camion`, `Hora_ingreso_terminal`, `Hora_apertura_camion`, `fecha_creacion`, `Imagen1`, `Imagen2`, `Imagen3`, `Url1`, `Url2`, `Url3`, `Usuario_id_responsable`, `Terminado`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$stm=$conexion->prepare($sql);
-	$stm->bind_param('iiissssssssssssii',$id_cliente,$id_terminal,$id_anden,$patente,$chofer,$hora_llegada_camion,$hora_ingreso_terminal,$hora_apertura_camion,$fecha_creacion,$bytesImagen_1,$bytesImagen_2,$bytesImagen_3,$url_1,$url_2,$url_3,$id_usuario,$terminado);	
+	$stm->bind_param('iiisssssssssssssi',$id_cliente,$id_terminal,$id_anden,$patente,$chofer,$hora_llegada_camion,$hora_ingreso_terminal,$hora_apertura_camion,$fecha_creacion,$bytesImagen_1,$bytesImagen_2,$bytesImagen_3,$url_1,$url_2,$url_3,$id_usuario,$terminado);	
 		
 	if($stm->execute()){
 		echo "registrado;". mysqli_insert_id($conexion);
