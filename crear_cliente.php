@@ -2,7 +2,7 @@
 
 	if(!isset($_SESSION['usuario']))
 {
-		header("location: login.html?Iniciar%20%sesion%20primero");
+		header("location: login.php?mensaje=Iniciar%20sesion%20primero");
 		die();
 }
 $pageTitulo = 'Registrar Cliente';
@@ -27,7 +27,7 @@ include 'header.php';
 			cache:false,
 			success: function(html)
 			{
-				alert(html);
+				window.location.replace("crear_cliente.php?mensaje="+html.trim().replace(" ","%20"));
 			}		
 		});
 		return false;		
@@ -60,6 +60,34 @@ include 'header.php';
 	<!-- /.container-fluid-->
 </div> 
 <!-- /.content-wrapper-->
+<?php if(isset($_GET['mensaje']))
+{
+        $message = $_GET['mensaje'];
+    ?>
+        <script type="text/javascript">
+        $(function() {
+         $('#myModal').modal('show');
+        });
+        </script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body"><?php echo $message; ?>.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<?php } ?>
 <?php 
 	include 'footer.php';
 ?>

@@ -2,7 +2,7 @@
 
 	if(!isset($_SESSION['usuario']))
 {
-		header("location: login.html?Iniciar%20%sesion%20primero");
+		header("location: login.php?mensaje=Iniciar%20sesion%20primero");
 		die();
 }
 $pageTitulo = 'Registrar Usuario';
@@ -12,16 +12,6 @@ include 'header.php';
 
 <script type="text/javascript">
 	 
-	 function Prueba()
-	 {
-		alert("It works!");
-	 }
-	 
-	 function ValidatarPassword() 
-	 {
-
-	 }
-	 
 	 	function Insert()
 	{
 		
@@ -29,7 +19,16 @@ include 'header.php';
 		var nombre = document.getElementById("txtNombre");
 		var apellido = document.getElementById("txtApellido");
 		var contrasenia = document.getElementById("txtContrasenia");
+		var	combo = document.getElementById("txtTipoUsuario");
+		var index = combo.selectedIndex;
+		var tipo_usuario_id = combo.options[index].value;
 		
+		/*
+		if(tipo_usuario_id=="")
+		{
+			alert("Seleccione tipo de usuario");
+		}
+		*/
 		
 		var dataString = {};
 		
@@ -37,6 +36,7 @@ include 'header.php';
 		dataString["nombre"] = nombre.value;	
 		dataString["apellido"] = apellido.value;
 		dataString["contrasenia"] = contrasenia.value;
+		dataString["tipo_usuario"] = tipo_usuario_id;
 	
 		//alert(id.value+" "+nombre.value+" "+apellido.value+" "+contrasenia.value);	
 		$.ajax(
@@ -47,7 +47,7 @@ include 'header.php';
 			cache:false,
 			success: function(html)
 			{
-				alert(html);
+				window.location.replace("crear_usuario.php?mensaje="+html.trim().replace(" ","%20"));
 			}		
 		});
 		return false;		
@@ -63,8 +63,35 @@ include 'header.php';
       <div class="card-body">
         <form>
 		  <div class="form-group">
-            <label for="txtUsuario">Usuario</label>
-            <input class="form-control" id="txtUsuario" name="txtUsuario" type="text" aria-describedby="usuarioHelp" placeholder="Ingrese usuario" maxlength="20">
+            <div class="form-row">
+              <div class="col-md-6">
+				<label for="txtUsuario">Usuario</label>
+				<input class="form-control" id="txtUsuario" name="txtUsuario" type="text" aria-describedby="usuarioHelp" placeholder="Ingrese usuario" maxlength="20">
+              </div>
+              <div class="col-md-6">
+                <label for="txtApellido">Tipo Usuario</label>
+                <select id="txtTipoUsuario" name="txtTipoUsuario" class="form-control" aria-describedby="nameHelp">
+				<option></option>
+				<?php 
+				$query = "SELECT ID,Descripcion FROM tbtipo_usuario;";
+				$stm=$conexion->prepare($query);
+				$stm->execute();
+				$result = $stm->get_result();
+				$registros = $result->fetch_all(MYSQLI_ASSOC);
+				
+				$result->close();
+				$stm->close();
+				
+				foreach ($registros as $key => $registro)
+				{
+					echo "<option value=".$registro['ID']." >"
+					. $registro['Descripcion'] 
+					. "</option>/n";
+				}
+?>
+				</select>
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <div class="form-row">
@@ -105,6 +132,34 @@ include 'header.php';
 	<!-- /.container-fluid-->
 </div> 
 <!-- /.content-wrapper-->
+<?php if(isset($_GET['mensaje']))
+{
+        $message = $_GET['mensaje'];
+    ?>
+        <script type="text/javascript">
+        $(function() {
+         $('#myModal').modal('show');
+        });
+        </script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body"><?php echo $message; ?>.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<?php } ?>
 <?php 
 	include 'footer.php';
 ?>

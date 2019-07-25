@@ -2,13 +2,43 @@
 
 	if(!isset($_SESSION['usuario']))
 {
-		header("location: login.html?Iniciar%20%sesion%20primero");
+		header("location: login.php?mensaje=Iniciar%20sesion%20primero");
 		die();
 }
 $pageTitulo = 'Lista de Andenes';
 include 'header.php';
 
 ?>
+<script type="text/javascript">
+	 
+	 	function Delete(anden_id)
+	{
+		var r = confirm("¿Esta seguro que desea eliminar al usuario con ID: " + anden_id +"?");
+		if (r == true) 
+		{
+			var id = anden_id;
+	
+			var dataString = {};
+		
+			dataString["id"] = id;
+	
+		//alert(id.value+" "+nombre.value+" "+apellido.value+" "+contrasenia.value);
+			$.ajax(
+			{
+				type:"post",
+				url: location.origin + "/PaginaRegistroCamion/clases/anden/delete.php",
+				data:dataString,
+				cache:false,
+				success: function(html)
+				{
+					window.location.replace("lista_andenes.php?mensaje="+html.trim().replace(" ","%20"));
+				}		
+			});
+		} 
+		return false;		
+	}
+
+</script>
 <div class="content-wrapper">
     <div class="container-fluid">
 		      <!-- DataTable Card-->
@@ -21,31 +51,47 @@ include 'header.php';
               <thead>
                 <tr>
                   <th>ID</th>
-				  <th>Terminal ID</th>
+				  <th>Terminal</th>
                   <th>Nombre</th>
+				  <th>Acciones</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>ID</th>
-				  <th>Terminal ID</th>
+				  <th>Terminal</th>
                   <th>Nombre</th>
+				  <th>Acciones</th>
                 </tr>
               </tfoot>
               <tbody>
 <?php
-				$result = mysqli_query($conexion,"SELECT ID,Terminal_id,Nombre FROM tbterminal_anden;");
-				while ($row = mysqli_fetch_array($result)) 
+				$query = "SELECT a.ID,b.Nombre as Terminal,a.Nombre FROM tbterminal_anden a left join tbterminal b on a.Terminal_id = b.ID;";
+				$stm=$conexion->prepare($query);
+				$stm->execute();
+				$result = $stm->get_result();
+				$registros = $result->fetch_all(MYSQLI_ASSOC);
+				
+				$result->close();
+				$stm->close();
+				
+				foreach ($registros as $key => $registro)
 				{
 					echo "<tr>\n".					    
 						"<td>".
-						$row['ID'].
+						$registro['ID'].
 						"</td>\n".
 						"<td>".
-						$row['Terminal_id'].
+						$registro['Terminal'].
 						"</td>\n".
 						"<td>".
-						$row['Nombre'].
+						$registro['Nombre'].
+						"</td>\n".
+						"<td>" .
+						"<div class=\"btn-toolbar\">".
+						"<a href='editar_anden.php?id=".$registro['ID']. "' class='btn btn-info btn-sm mr-1'>Editar</a>".
+						"<a href='#' onclick='return Delete(".$registro['ID'].");' class='btn btn-danger btn-sm mr-1'>Eliminar</a>".
+						"</div>".
 						"</td>\n".
 						"</tr>\n";					
 				}

@@ -21,23 +21,23 @@
 			}
 			else
 			{
-				header("location: ../../login.html?usuario=Usuario%20o%20contrasenia%20no%20corresponde");
+				header("location: ../../login.php?mensaje=Usuario%20o%20contrasenia%20no%20corresponde");
 			}
 		}
 		else
 		{
-			header("location: ../../login.html?usuario=Error%20en%20la%20base%20de%20datos");
+			header("location: ../../login.php?mensaje=Error%20en%20la%20base%20de%20datos");
 		}
     }
 	else
 	{
-		header("location: ../../login.html?usuario=Usuario%20o%20contrasenia%20obligatorio");
+		header("location: ../../login.php?mensaje=Usuario%20o%20contrasenia%20obligatorio");
 	}
 	
 	CloseCon($conexion);
 	}
 	else{
-		header("location: ../../login.html");
+		header("location: ../../login.php");
 	}
 	
 ?>
